@@ -28,11 +28,14 @@ routerCategory = routers.SimpleRouter()
 routerCategory.register(r'category', ClinicCategoryViewSet, basename='Category')
 
 
+routerDoctor = routers.SimpleRouter()
+routerDoctor.register(r'doctors', DoctorsViewSet)
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
     path('api/v1/', include(routerCategory.urls)),
-]
+    path('api/v1/', include(routerDoctor.urls)),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_URL)

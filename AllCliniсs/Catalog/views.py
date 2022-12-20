@@ -10,6 +10,11 @@ from .models import *
 from .serializers import *
 
 
+class DoctorsViewSet(viewsets.ModelViewSet):
+    queryset = Doctor.objects.all()
+    serializer_class = DoctorSerializer
+
+
 class ClinicsViewSet(viewsets.ModelViewSet):
     queryset = Clinics.objects.all()
     serializer_class = ClinicsSerializer
@@ -22,6 +27,7 @@ class ClinicsViewSet(viewsets.ModelViewSet):
             article = {
                 'name': d.DoctorName,
                 'content': d.DoctorContent,
+                'photo': 'http://127.0.0.1:8000/media/' + str(d.DoctorPhoto),
             }
             doctors_list.append(article)
         return Response(doctors_list)
@@ -34,6 +40,7 @@ class ClinicsViewSet(viewsets.ModelViewSet):
             article = {
                 'name': s.ServiceName,
                 'price': s.ServicePrice,
+                'photo': 'http://127.0.0.1:8000/media/' + str(s.ServicePhoto)
             }
             service_list.append(article)
         return Response(service_list)
