@@ -43,3 +43,14 @@ class Doctor(models.Model):
 
     def __str__(self):
         return self.DoctorName
+
+
+class Reviews(models.Model):
+    email = models.EmailField()
+    name = models.CharField(max_length=50)
+    text = models.CharField(max_length=100)
+    review_clinic = models.ForeignKey('Clinics', on_delete=models.PROTECT, null=True)
+    rating = models.IntegerField()
+
+    def __str__(self):
+        return self.name

@@ -5,7 +5,7 @@ import requests
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
-
+from parsel import Selector
 from .models import *
 from .serializers import *
 
@@ -414,6 +414,5 @@ def save_function(article_list_ser, article_list_doc, article_list_clinic):
             break
 
     return print('All right!')
-
 
 
